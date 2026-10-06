@@ -276,18 +276,42 @@ include("includes/header.php");
                 while ($prod = mysqli_fetch_assoc($products_res)):
                     $proImg = !empty($prod['pro_img']) ? 'admin/assets/img/uploads/' . $prod['pro_img'] : 'assets/images/black.png';
                     $productSlug = !empty($prod['slug_url']) ? $prod['slug_url'] : $prod['id'];
+                    
+                    // Fetch description: short_desc first, fallback to meta_desc, then default text
+                    $descText = !empty($prod['short_desc']) ? strip_tags($prod['short_desc']) : strip_tags($prod['meta_desc']);
+                    if(empty(trim($descText))){
+                         $descText = "Premium quality export grade agricultural product sourced directly from the finest farms in India.";
+                    }
             ?>
                     <div class="col-lg-3 col-md-6 col-sm-6 reveal-up">
-                        <div class="premium-product-card bg-white h-100">
+                        <div class="premium-product-card bg-white h-100 d-flex flex-column">
                             <div class="product-badge bg-gold text-dark fw-bold">Premium</div>
+                            
                             <a href="product-details.php?slug=<?php echo urlencode($productSlug); ?>" class="product-img-box d-block">
                                 <img src="<?= htmlspecialchars($proImg) ?>" alt="<?= htmlspecialchars($prod['pro_name']) ?>" onerror="this.src='assets/images/black.png'">
                             </a>
-                            <div class="product-info text-center p-4">
-                                <h4 class="product-title text-dark fw-bold mb-3">
-                                    <a href="product-details.php?slug=<?php echo urlencode($productSlug); ?>" class="text-decoration-none text-dark"><?= htmlspecialchars($prod['pro_name']) ?></a>
+                            
+                            <div class="product-info p-4 d-flex flex-column flex-grow-1 text-start">
+                                <h4 class="product-title text-dark fw-bold mb-2">
+                                    <a href="product-details.php?slug=<?php echo urlencode($productSlug); ?>" class="text-decoration-none text-dark">
+                                        <?= htmlspecialchars($prod['pro_name']) ?>
+                                    </a>
                                 </h4>
-                                <a href="contact.php?product=<?= urlencode($prod['pro_name']) ?>" class="btn-gold-solid w-100 py-2 d-block">Inquire Now</a>
+                                
+                                <!-- Exactly 2 lines short description -->
+                                <p class="product-short-desc text-muted mb-4 flex-grow-1">
+                                    <?= htmlspecialchars($descText) ?>
+                                </p>
+                                
+                                <!-- Modern Button Group (View Details Left | Inquire Now Right) -->
+                                <div class="d-flex justify-content-between gap-2 mt-auto w-100">
+                                    <a href="product-details.php?slug=<?php echo urlencode($productSlug); ?>" class="btn-view-details w-50 text-center text-decoration-none d-flex align-items-center justify-content-center">
+                                        View Details
+                                    </a>
+                                    <a href="contact.php?product=<?= urlencode($prod['pro_name']) ?>" class="btn-gold-solid w-50 text-center text-decoration-none d-flex align-items-center justify-content-center px-1" style="font-size: 0.75rem; padding-top: 10px; padding-bottom: 10px;">
+                                        Inquire Now
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
