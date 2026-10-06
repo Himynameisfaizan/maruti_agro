@@ -1,0 +1,257 @@
+/* ==============================================
+   MARUTI AGRO INDUSTRIES - PREMIUM THEME CSS
+   Color Palette:
+   Deep Green: #0B4619
+   Rich Gold: #D4AF37
+   Dark Slate: #1A1A1A
+   Light Gray: #F9F9F9
+   ============================================== */
+
+/* Base & Utility */
+body {
+    font-family: 'Open Sans', 'Arial', sans-serif;
+    color: #444;
+}
+.text-gold { color: #D4AF37 !important; }
+.text-dark { color: #1A1A1A !important; }
+.bg-gold { background-color: #D4AF37 !important; color: #1A1A1A; }
+.bg-green { background-color: #0B4619 !important; color: #fff; }
+.bg-light-green { background-color: #F4F7F4 !important; }
+.bg-light-gray { background-color: #F9F9F9 !important; }
+
+.section-padding { padding: 90px 0; }
+.letter-spacing-1 { letter-spacing: 1.5px; }
+
+/* Buttons */
+.btn-gold-solid {
+    background-color: #D4AF37;
+    color: #1A1A1A !important;
+    padding: 14px 32px;
+    border: 2px solid #D4AF37;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    border-radius: 4px; /* Corporate sharp edges */
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-decoration: none;
+}
+.btn-gold-solid:hover {
+    background-color: #0B4619;
+    border-color: #0B4619;
+    color: #ffffff !important;
+}
+
+.btn-gold-outline {
+    background-color: transparent;
+    color: #ffffff !important;
+    padding: 14px 32px;
+    border: 2px solid #D4AF37;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-decoration: none;
+}
+.btn-gold-outline:hover {
+    background-color: #D4AF37;
+    color: #1A1A1A !important;
+}
+
+.btn-dark-outline {
+    background-color: transparent;
+    color: #1A1A1A;
+    padding: 10px 24px;
+    border: 2px solid #1A1A1A;
+    font-weight: 700;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+.btn-dark-outline:hover {
+    background-color: #1A1A1A;
+    color: #fff;
+}
+.btn-outline-white {
+    border: 2px solid #fff;
+    color: #fff;
+    padding: 8px 20px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+.btn-outline-white:hover {
+    background-color: #fff;
+    color: #1A1A1A;
+}
+
+/* Scroll Animations */
+.reveal-up { opacity: 0; transform: translateY(40px); transition: all 0.8s ease; }
+.reveal-up.active { opacity: 1; transform: translateY(0); }
+.reveal-fade { opacity: 0; transition: all 1s ease; }
+.reveal-fade.active { opacity: 1; }
+.reveal-left { opacity: 0; transform: translateX(-40px); transition: all 0.8s ease; }
+.reveal-left.active { opacity: 1; transform: translateX(0); }
+.reveal-right { opacity: 0; transform: translateX(40px); transition: all 0.8s ease; }
+.reveal-right.active { opacity: 1; transform: translateX(0); }
+.delay-1 { transition-delay: 0.2s; }
+.delay-2 { transition-delay: 0.4s; }
+.delay-3 { transition-delay: 0.6s; }
+.delay-4 { transition-delay: 0.8s; }
+
+/* 1. Hero Slider */
+.premium-hero-slider { height: 90vh; min-height: 600px; background-color: #111; overflow: hidden; }
+.premium-hero-slider .carousel-inner, .premium-hero-slider .carousel-item { height: 100%; }
+.slide-bg {
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    transform: scale(1.05);
+    transition: transform 6s linear;
+}
+.carousel-item.active .slide-bg { transform: scale(1); }
+.slide-bg::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(to right, rgba(11, 70, 25, 0.85), rgba(0, 0, 0, 0.5));
+}
+.premium-caption {
+    top: 50%;
+    transform: translateY(-50%);
+    bottom: auto; left: 0; right: 0; text-align: left; padding: 0 15px;
+}
+.caption-content { max-width: 700px; }
+.subtitle-badge {
+    background: rgba(212, 175, 55, 0.2);
+    color: #D4AF37;
+    padding: 6px 16px;
+    border-radius: 30px;
+    border: 1px solid rgba(212, 175, 55, 0.5);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+.hero-title { font-size: 4rem; font-weight: 800; color: #fff; margin-bottom: 20px; line-height: 1.1; }
+.premium-caption p { font-size: 1.25rem; color: #e0e0e0; margin-bottom: 35px; line-height: 1.6; }
+.btn-group-premium { display: flex; gap: 15px; flex-wrap: wrap; }
+.nav-icon-box {
+    width: 50px; height: 50px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.3);
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%; color: #fff; font-size: 1.5rem; transition: all 0.3s ease;
+}
+.carousel-control-prev:hover .nav-icon-box, .carousel-control-next:hover .nav-icon-box {
+    background: #D4AF37; border-color: #D4AF37; color: #1A1A1A;
+}
+@media (max-width: 768px) {
+    .hero-title { font-size: 2.5rem; }
+    .premium-caption p { font-size: 1.05rem; }
+    .btn-group-premium { flex-direction: column; }
+    .btn-gold-outline { margin-left: 0; }
+}
+
+/* 2. About Section */
+.about-premium-img-box { position: relative; border-radius: 4px; padding-bottom: 40px; padding-right: 40px; }
+.about-premium-img-box .main-img {
+    width: 100%; height: auto; border-radius: 4px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    position: relative; z-index: 2;
+}
+.about-premium-img-box::after {
+    content: ""; position: absolute; bottom: 0; right: 0; width: 80%; height: 80%;
+    background-color: #F4F7F4; border: 2px solid #0B4619; z-index: 1; border-radius: 4px;
+}
+.experience-card {
+    position: absolute; bottom: 20px; right: 20px; padding: 25px 30px;
+    text-align: center; border-radius: 4px; z-index: 3; box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+.experience-card h3 { font-size: 2.5rem; color: #1A1A1A; }
+
+/* 3. Features / Badges */
+.premium-feature-card {
+    background: #fff; padding: 40px 20px; border-radius: 4px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.03); transition: all 0.4s ease;
+    border-bottom: 3px solid transparent;
+}
+.premium-feature-card:hover {
+    transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+    border-bottom-color: #D4AF37;
+}
+.feature-icon-wrapper { font-size: 2.8rem; }
+
+/* 4. Category Section */
+.premium-category-card { position: relative; overflow: hidden; border-radius: 4px; height: 320px; }
+.cat-img-box { width: 100%; height: 100%; position: relative; }
+.cat-img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+.premium-category-card:hover .cat-img-box img { transform: scale(1.1); }
+.cat-img-box .overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to top, rgba(11,70,25,0.9) 0%, rgba(0,0,0,0.2) 100%);
+}
+.cat-content {
+    position: absolute; bottom: 30px; left: 0; width: 100%; z-index: 2; padding: 0 20px;
+    transform: translateY(20px); opacity: 0; transition: all 0.4s ease;
+}
+.premium-category-card:hover .cat-content { transform: translateY(0); opacity: 1; }
+.cat-title { text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
+
+/* 5. Product Showcase */
+.premium-product-card {
+    border: 1px solid #eaeaea; border-radius: 4px; overflow: hidden; position: relative;
+    transition: all 0.3s ease;
+}
+.premium-product-card:hover {
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08); border-color: #D4AF37;
+}
+.product-img-box {
+    height: 250px; padding: 20px; background: #fff;
+    display: flex; align-items: center; justify-content: center;
+}
+.product-img-box img { width: 100%; height: 100%; object-fit: contain; transition: transform 0.4s ease; }
+.premium-product-card:hover .product-img-box img { transform: scale(1.08); }
+.product-badge {
+    position: absolute; top: 15px; left: 15px; padding: 4px 12px; font-size: 0.75rem;
+    border-radius: 2px; text-transform: uppercase; z-index: 2;
+}
+.product-info { border-top: 1px solid #f5f5f5; }
+.product-title a { transition: color 0.3s; font-size: 1.1rem; }
+.product-title a:hover { color: #0B4619 !important; }
+
+/* 6. Testimonials */
+.premium-testimonial-card {
+    padding: 40px 30px; border-radius: 4px; text-align: left; position: relative;
+    border: 1px solid #eee; transition: all 0.3s ease;
+}
+.premium-testimonial-card:hover { border-color: #D4AF37; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+.quote-icon { font-size: 3rem; line-height: 1; margin-bottom: 10px; opacity: 0.5; }
+
+/* 7. Brands Marquee */
+.brand-slider-container { width: 100%; overflow: hidden; }
+.brand-slide-track { display: flex; align-items: center; width: calc(200px * 14); animation: scrollMarquee 35s linear infinite; }
+.brand-slide-track:hover { animation-play-state: paused; }
+.brand-slide { width: 200px; padding: 15px; display: flex; justify-content: center; align-items: center; }
+.brand-slide img { max-width: 100%; max-height: 60px; filter: grayscale(100%); opacity: 0.5; transition: all 0.4s ease; }
+.brand-slide img:hover { filter: grayscale(0%); opacity: 1; transform: scale(1.1); }
+@keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-200px * 7)); } }
+
+/* 8. FAQ Accordion */
+.premium-accordion .accordion-item { border-radius: 4px; overflow: hidden; border: 1px solid #eee; }
+.premium-accordion .accordion-button { padding: 20px; font-size: 1.05rem; }
+.premium-accordion .accordion-button:not(.collapsed) {
+    background-color: #F4F7F4; color: #0B4619 !important; box-shadow: none;
+}
+.premium-accordion .accordion-button:focus { box-shadow: none; }
+.premium-accordion .accordion-button::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23D4AF37'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+}

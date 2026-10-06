@@ -1,0 +1,214 @@
+<?php
+$current_page = basename($_SERVER['PHP_SELF']);
+
+if (!isset($pageTitle)) { 
+    $pageTitle = "Maruti Agro Industries | Premium Agricultural Exports"; 
+}
+if (!isset($meta_description)) { 
+    $meta_description = "Maruti Agro Industries is a trusted global exporter of premium quality dry fruits, whole spices, and authentic Indian agricultural products."; 
+}
+if (!isset($meta_keywords)) { 
+    $meta_keywords = "Maruti Agro Industries, agricultural exports, Indian spices, dry fruits exporter, wholesale spices"; 
+}
+
+$favicon = "assets/images/logo/favicon.png"; 
+
+$t_phone = "+91-0000000000";
+$t_email = "info@marutiagro.com";
+$t_fb = "#"; $t_linkedin = "#"; $t_wp = "#";
+
+if (isset($conn)) {
+    // Favicon query if available in DB
+    $fav_query = mysqli_query($conn, "SELECT logo_path FROM logos WHERE location = 'favicon' AND is_active = 1 ORDER BY id DESC LIMIT 1");
+    if ($fav_query && mysqli_num_rows($fav_query) > 0) {
+        $fav_data = mysqli_fetch_assoc($fav_query);
+        $favicon = 'admin/uploads/' . $fav_data['logo_path'];
+    }
+
+    $contact_query = mysqli_query($conn, "SELECT * FROM contacts ORDER BY id DESC LIMIT 1");
+    if ($contact_query && mysqli_num_rows($contact_query) > 0) {
+        $c_info = mysqli_fetch_assoc($contact_query);
+        $t_phone = !empty($c_info['phone']) ? $c_info['phone'] : $t_phone;
+        $t_email = !empty($c_info['contact_email']) ? $c_info['contact_email'] : (!empty($c_info['email']) ? $c_info['email'] : $t_email);
+        $t_fb = !empty($c_info['facebook']) ? $c_info['facebook'] : $t_fb;
+        $t_linkedin = !empty($c_info['linkdin']) ? $c_info['linkdin'] : $t_linkedin;
+        $t_wp = !empty($c_info['wp_number']) ? 'https://wa.me/' . preg_replace('/[^0-9]/', '', $c_info['wp_number']) : $t_wp;
+    }
+
+    $cats_dropdown_query = mysqli_query($conn, "SELECT * FROM categories WHERE status = 1 ORDER BY categories ASC");
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title><?= htmlspecialchars($pageTitle); ?></title>
+    <meta name="description" content="<?= htmlspecialchars($meta_description); ?>">
+    <meta name="keywords" content="<?= htmlspecialchars($meta_keywords); ?>">
+    
+    <?php
+    $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+    $domain = $_SERVER['HTTP_HOST'];
+    $uri_path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    
+    $canonical_url = $protocol . $domain . $uri_path;
+
+    if ($current_page == 'index.php') {
+        $canonical_url = $protocol . $domain . "/";
+    }
+    
+    if (($current_page == 'blog-details.php' || $current_page == 'product-details.php') && !empty($_GET['slug'])) {
+        $canonical_url .= "?slug=" . htmlspecialchars($_GET['slug']);
+    } elseif ($current_page == 'products.php' && !empty($_GET['category'])) {
+        $canonical_url .= "?category=" . htmlspecialchars($_GET['category']);
+    }
+    ?>
+    <link rel="canonical" href="<?= $canonical_url; ?>" />
+    
+    <meta name="google-site-verification" content="eX_sXjETkL7O-emXnSDL6-LirHz1VsbiMIZMyFqgvIw" />
+    <link rel="icon" href="<?= htmlspecialchars($favicon); ?>" type="image/x-icon">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="assets/style/include.css?v=<?php echo time() ?>">
+    <link rel="stylesheet" href="assets/style/style.css?v=<?php echo time() ?>">
+    <!-- <link rel="stylesheet" href="assets/style/about.css?v=<?php echo time() ?>">
+    <link rel="stylesheet" href="assets/style/blog.css?v=<?php echo time() ?>">
+    <link rel="stylesheet" href="assets/style/contact.css?v=<?php echo time() ?>">
+    <link rel="stylesheet" href="assets/style/gallery.css?v=<?php echo time() ?>">
+    <link rel="stylesheet" href="assets/style/product.css?v=<?php echo time() ?>"> -->
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3JGVQX47GN"></script>
+    <script>
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-PJCRLJB3');
+    </script>
+  
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-3JGVQX47GN');
+    </script>
+
+    <?php if ($current_page == 'index.php' || $current_page == '') { ?>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Maruti Agro Industries",
+        "url": "https://marutiagro.com/",
+        "logo": "https://marutiagro.com/assets/images/logo/logo.png",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+91-0000000000",
+            "contactType": "customer service",
+            "areaServed": "IN",
+            "availableLanguage": ["en", "hi"]
+        },
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "RS NO 111P3/2/P PLOT NO 2, HADADAD-KANIYAD ROAD, NEAR CANAL",
+            "addressLocality": "BOTAD, BHAVNAGAR",
+            "postalCode": "364710",
+            "addressCountry": "IN"
+        }
+    }
+    </script>
+    <?php } ?>
+
+    <!-- Dynamic Schema Markup -->
+    <?php 
+    if (isset($page_schema) && !empty(trim($page_schema))) {
+        echo $page_schema;
+    } 
+    ?>
+    
+</head>
+<body>
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PJCRLJB3"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<!-- Premium Topbar -->
+<div class="topbar d-none d-lg-block">
+    <div class="container">
+        <div class="row align-items-center py-2">
+            <div class="col-md-7 topbar-left">
+                <a href="mailto:<?= htmlspecialchars($t_email); ?>"><i class="bi bi-envelope-fill me-2 gold-icon"></i> <?= htmlspecialchars($t_email); ?></a>
+                <span class="mx-3 text-white-50">|</span>
+                <a href="tel:<?= preg_replace('/[^0-9+]/', '', $t_phone); ?>"><i class="bi bi-telephone-fill me-2 gold-icon"></i> <?= htmlspecialchars($t_phone); ?></a>
+            </div>
+            <div class="col-md-5 text-end topbar-right">
+                <span class="me-3 text-white-50 small">Follow Us:</span>
+                <?php if($t_fb != '#') echo "<a href='$t_fb' target='_blank'><i class='bi bi-facebook'></i></a>"; ?>
+                <?php if($t_linkedin != '#') echo "<a href='$t_linkedin' target='_blank'><i class='bi bi-linkedin'></i></a>"; ?>
+                <?php if($t_wp != '#') echo "<a href='$t_wp' target='_blank'><i class='bi bi-whatsapp'></i></a>"; ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Premium Navbar -->
+<nav class="navbar navbar-expand-lg custom-navbar sticky-top">
+    <div class="container">
+        
+        <!-- TEXT LOGO INSTEAD OF IMAGE -->
+        <a class="navbar-brand text-logo-container d-flex flex-column align-items-start text-decoration-none" href="index.php">
+            <span class="logo-main-text">MARUTI AGRO</span>
+            <span class="logo-sub-text">INDUSTRIES</span>
+        </a>
+        
+        <button class="navbar-toggler shadow-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse justify-content-end" id="mainNav">
+            <ul class="navbar-nav align-items-lg-center">
+                <li class="nav-item">
+                    <a class="nav-link <?= ($current_page == 'index.php') ? 'active' : ''; ?>" href="index.php">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?= ($current_page == 'about.php') ? 'active' : ''; ?>" href="about.php">About Us</a>
+                </li>
+                
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle <?= ($current_page == 'products.php' || $current_page == 'product-details.php') ? 'active' : ''; ?>" href="products.php" id="productsDropdown" data-bs-toggle="dropdown" aria-expanded="false" onclick="window.location.href='products.php';">
+                        Products
+                    </a>
+                    <ul class="dropdown-menu border-0 shadow-lg" aria-labelledby="productsDropdown">
+                        <?php 
+                        if (isset($cats_dropdown_query) && mysqli_num_rows($cats_dropdown_query) > 0) {
+                            while($cat = mysqli_fetch_assoc($cats_dropdown_query)) {
+                                $isActiveCat = (isset($_GET['category']) && $_GET['category'] == $cat['slug_url']) ? 'active-dropdown-item' : '';
+                        ?>
+                            <li><a class="dropdown-item <?= $isActiveCat; ?>" href="products.php?category=<?= $cat['slug_url']; ?>"><?= htmlspecialchars($cat['categories']); ?></a></li>
+                        <?php 
+                            }
+                        } 
+                        ?>
+                    </ul>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link <?= ($current_page == 'blog.php' || $current_page == 'blog-details.php') ? 'active' : ''; ?>" href="blog.php">Blog</a>
+                </li> 
+                <li class="nav-item">
+                    <a class="nav-link <?= ($current_page == 'contact.php') ? 'active' : ''; ?>" href="contact.php">Contact Us</a>
+                </li>
+                <li class="nav-item ms-lg-4 mt-3 mt-lg-0 mb-3 mb-lg-0">
+                    <a class="btn btn-quote" href="contact.php">Get a Quote</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
