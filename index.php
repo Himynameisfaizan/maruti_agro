@@ -304,14 +304,15 @@ include("includes/header.php");
                                 </p>
                                 
                                 <!-- Modern Button Group (View Details Left | Inquire Now Right) -->
-                                <div class="d-flex justify-content-between gap-2 mt-auto w-100">
-                                    <a href="product-details.php?slug=<?php echo urlencode($productSlug); ?>" class="btn-view-details w-50 text-center text-decoration-none d-flex align-items-center justify-content-center">
-                                        View Details
-                                    </a>
-                                    <a href="contact.php?product=<?= urlencode($prod['pro_name']) ?>" class="btn-gold-solid w-50 text-center text-decoration-none d-flex align-items-center justify-content-center px-1" style="font-size: 0.75rem; padding-top: 10px; padding-bottom: 10px;">
-                                        Inquire Now
-                                    </a>
-                                </div>
+                                <!-- Modern Button Group (Sleek Design) -->
+<div class="d-flex gap-2 mt-auto w-100">
+    <a href="product-details.php?slug=<?php echo urlencode($productSlug); ?>" class="btn-card-outline flex-fill text-center text-decoration-none">
+        View Details
+    </a>
+    <a href="contact.php?product=<?= urlencode($prod['pro_name']) ?>" class="btn-card-solid flex-fill text-center text-decoration-none">
+        Inquire Now
+    </a>
+</div>
                             </div>
                         </div>
                     </div>
