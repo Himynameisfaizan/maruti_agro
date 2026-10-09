@@ -213,105 +213,119 @@
     box-shadow: none;
   }
 }
-/* ==============================
-       BREADCRUMB SECTION STYLING
-       ============================== */
-.breadcrumb-wrapper {
-  background:
-    linear-gradient(rgba(113, 27, 60, 0.9), rgba(34, 34, 34, 0.95)), /* Maroon to Charcoal Gradient */
-    url("https://images.unsplash.com/photo-1596040033229-a9821ebd058d?q=80&w=2000&auto=format&fit=crop")
-      center center / cover no-repeat fixed;
-  padding: 100px 0 80px 0;
-  text-align: center;
-  color: #ffffff;
-  position: relative;
-  margin-top: 0;
-  border-bottom: 4px solid #711b3c; /* Maroon border at bottom for premium feel */
+/* =====================================
+   PREMIUM BREADCRUMB STYLING
+   ===================================== */
+.premium-breadcrumb-wrapper {
+    background:
+        linear-gradient(rgba(11, 70, 25, 0.88), rgba(6, 43, 15, 0.96)), /* Deep Green Gradient */
+        url("https://images.unsplash.com/photo-1596040033229-a9821ebd058d?q=80&w=2000&auto=format&fit=crop") center center / cover no-repeat fixed;
+    padding: 110px 0 90px 0;
+    text-align: center;
+    color: #ffffff;
+    position: relative;
+    margin-top: 0;
 }
 
+/* Bottom Gold Line with Gradient */
+.breadcrumb-bottom-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #D4AF37 0%, #F3E5AB 50%, #D4AF37 100%); /* Shimmering Gold */
+}
+
+/* Page Title with Fade Down Animation */
 .breadcrumb-title {
-  font-family: inherit; /* Website ki default premium font lega */
-  font-size: 3rem;
-  font-weight: 800;
-  letter-spacing: 1px;
-  margin-bottom: 15px;
-  text-transform: capitalize;
-  animation: slideDown 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
-  opacity: 0;
-  transform: translateY(-20px);
+    font-size: 3.2rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+    text-transform: capitalize;
+    color: #ffffff;
+    animation: slideDownFade 0.8s ease forwards;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.4);
 }
 
+/* Breadcrumb Navigation Glassmorphism Effect */
 .custom-breadcrumb {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  font-size: 1.05rem;
-  font-weight: 500;
-  animation: slideUp 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) 0.2s forwards;
-  opacity: 0;
-  transform: translateY(20px);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    padding: 10px 30px;
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.08); /* Glass effect */
+    border: 1px solid rgba(212, 175, 55, 0.4); /* Gold Border */
+    border-radius: 40px;
+    backdrop-filter: blur(8px); /* Blur background behind it */
+    animation: slideUpFade 0.8s ease 0.3s forwards;
+    opacity: 0; /* Animated entry */
 }
 
 .custom-breadcrumb li {
-  display: inline-flex;
-  align-items: center;
+    display: inline-flex;
+    align-items: center;
+    color: #E8E8E8;
 }
 
 .custom-breadcrumb li a {
-  color: rgba(255, 255, 255, 0.7); /* Slightly faded white for inactive link */
-  text-decoration: none;
-  transition: all 0.3s ease;
+    color: #E8E8E8;
+    text-decoration: none;
+    transition: all 0.3s ease;
 }
 
 .custom-breadcrumb li a:hover {
-  color: #ffffff;
-  text-shadow: 0 0 10px rgba(255,255,255,0.3);
+    color: #D4AF37; /* Brand Gold */
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
 }
 
-.custom-breadcrumb li i {
-  margin-right: 6px;
+.custom-breadcrumb li .text-gold {
+    color: #D4AF37;
+    margin-right: 8px;
 }
 
+/* Arrow indicator between pages */
 .custom-breadcrumb li + li::before {
-  content: "\276F"; /* Right-pointing angle quotation mark */
-  padding: 0 12px;
-  color: rgba(255, 255, 255, 0.4);
-  font-size: 0.9rem;
+    content: "\276F"; /* Right angle quote mark */
+    padding: 0 15px;
+    color: rgba(212, 175, 55, 0.7); /* Subtle gold */
+    font-size: 0.9rem;
 }
 
 .custom-breadcrumb li.active {
-  color: #ffffff;
-  font-weight: 700;
+    color: #D4AF37;
+    font-weight: 700;
 }
 
-@keyframes slideDown {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Animations */
+@keyframes slideDownFade {
+    0% { opacity: 0; transform: translateY(-30px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
-@keyframes slideUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@keyframes slideUpFade {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
 
-/* Mobile Adjustments */
+/* Mobile Devices */
 @media (max-width: 768px) {
-  .breadcrumb-wrapper {
-    padding: 80px 0 60px 0;
-  }
-  .breadcrumb-title {
-    font-size: 2.2rem;
-  }
-  .custom-breadcrumb {
-    font-size: 0.95rem;
-  }
+    .premium-breadcrumb-wrapper {
+        padding: 80px 0 60px 0;
+    }
+    .breadcrumb-title {
+        font-size: 2.2rem;
+    }
+    .custom-breadcrumb {
+        font-size: 0.95rem;
+        padding: 8px 25px;
+    }
 }
+
 /* =====================================
    PREMIUM FOOTER STYLING
    ===================================== */

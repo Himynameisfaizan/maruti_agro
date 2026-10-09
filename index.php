@@ -1,59 +1,59 @@
 <?php
-include 'config/connect.php';
+    include 'config/connect.php';
 
-$banner_res = false;
-if (isset($conn)) {
-    $banner_res = mysqli_query($conn, "SELECT * FROM banners WHERE status = 0 ORDER BY display_order ASC, id DESC");
-}
-
-$categories_res = false;
-if (isset($conn)) {
-    $categories_res = mysqli_query($conn, "SELECT * FROM categories WHERE status = 1 ORDER BY id DESC LIMIT 3");
-}
-
-$products_res = false;
-if (isset($conn)) {
-    $products_res = mysqli_query($conn, "SELECT * FROM products WHERE status = 1 ORDER BY id DESC LIMIT 8");
-}
-
-// Fetch Testimonials
-$test_res = false;
-if (isset($conn)) {
-    $test_res = mysqli_query($conn, "SELECT * FROM testimonials WHERE status = 1 ORDER BY test_id DESC LIMIT 3");
-}
-
-// Fetch About Section Data
-$about_res = false;
-$about_data = [];
-if (isset($conn)) {
-    $about_query = mysqli_query($conn, "SELECT * FROM about_sections ORDER BY section_order ASC LIMIT 1");
-    if ($about_query && mysqli_num_rows($about_query) > 0) {
-        $about_data = mysqli_fetch_assoc($about_query);
+    $banner_res = false;
+    if (isset($conn)) {
+        $banner_res = mysqli_query($conn, "SELECT * FROM banners WHERE status = 0 ORDER BY display_order ASC, id DESC");
     }
-}
 
-$brands_array = [];
-if (isset($conn)) {
-    $brands_res = mysqli_query($conn, "SELECT * FROM brands ORDER BY id DESC");
-    if ($brands_res && mysqli_num_rows($brands_res) > 0) {
-        while ($brand = mysqli_fetch_assoc($brands_res)) {
-            $brands_array[] = $brand;
+    $categories_res = false;
+    if (isset($conn)) {
+        $categories_res = mysqli_query($conn, "SELECT * FROM categories WHERE status = 1 ORDER BY id DESC LIMIT 3");
+    }
+
+    $products_res = false;
+    if (isset($conn)) {
+        $products_res = mysqli_query($conn, "SELECT * FROM products WHERE status = 1 ORDER BY id DESC LIMIT 8");
+    }
+
+    // Fetch Testimonials
+    $test_res = false;
+    if (isset($conn)) {
+        $test_res = mysqli_query($conn, "SELECT * FROM testimonials WHERE status = 1 ORDER BY test_id DESC LIMIT 3");
+    }
+
+    // Fetch About Section Data
+    $about_res = false;
+    $about_data = [];
+    if (isset($conn)) {
+        $about_query = mysqli_query($conn, "SELECT * FROM about_sections ORDER BY section_order ASC LIMIT 1");
+        if ($about_query && mysqli_num_rows($about_query) > 0) {
+            $about_data = mysqli_fetch_assoc($about_query);
         }
     }
-}
 
-$currentPage = basename($_SERVER['PHP_SELF']);
-$seo_query = mysqli_query($conn, "SELECT meta_title, meta_key, meta_desc FROM meta WHERE page_url = '$currentPage'");
+    $brands_array = [];
+    if (isset($conn)) {
+        $brands_res = mysqli_query($conn, "SELECT * FROM brands ORDER BY id DESC");
+        if ($brands_res && mysqli_num_rows($brands_res) > 0) {
+            while ($brand = mysqli_fetch_assoc($brands_res)) {
+                $brands_array[] = $brand;
+            }
+        }
+    }
 
-if ($seo_query && mysqli_num_rows($seo_query) > 0) {
-    $seo_data = mysqli_fetch_assoc($seo_query);
-    $pageTitle = $seo_data['meta_title'];
-    $meta_keywords = $seo_data['meta_key'];
-    $meta_description = $seo_data['meta_desc'];
-}
-include("includes/header.php");
+    $currentPage = basename($_SERVER['PHP_SELF']);
+    $seo_query = mysqli_query($conn, "SELECT meta_title, meta_key, meta_desc FROM meta WHERE page_url = '$currentPage'");
+
+    if ($seo_query && mysqli_num_rows($seo_query) > 0) {
+        $seo_data = mysqli_fetch_assoc($seo_query);
+        $pageTitle = $seo_data['meta_title'];
+        $meta_keywords = $seo_data['meta_key'];
+        $meta_description = $seo_data['meta_desc'];
+    }
+    include("includes/header.php");
 ?>
-    
+
 <!-- Premium Hero Slider Section -->
 <div id="heroCarousel" class="carousel slide carousel-fade premium-hero-slider" data-bs-ride="carousel" data-bs-pause="false">
     <div class="carousel-indicators">
@@ -133,7 +133,7 @@ include("includes/header.php");
         <div class="row align-items-center">
             <div class="col-lg-6 mb-5 mb-lg-0 pe-lg-5">
                 <div class="about-premium-img-box reveal-left">
-                    <?php 
+                    <?php
                     $aboutImg = !empty($about_data['image_url']) ? 'admin/' . $about_data['image_url'] : 'assets/images/about.jpg';
                     ?>
                     <img src="<?= htmlspecialchars($aboutImg); ?>" alt="<?= !empty($about_data['title']) ? htmlspecialchars($about_data['title']) : 'Maruti Agro Industries Premium Quality'; ?>" onerror="this.src='https://images.unsplash.com/photo-1596040033229-a9821ebd058d?q=80&w=800&auto=format&fit=crop'" class="img-fluid main-img rounded">
@@ -150,17 +150,17 @@ include("includes/header.php");
                         <?= !empty($about_data['title']) ? htmlspecialchars($about_data['title']) : 'Delivering Authentic Indian Flavors to the World'; ?>
                     </h2>
                 </div>
-                
+
                 <div class="about-content text-muted-custom mb-4" style="font-size: 1.05rem; line-height: 1.8;">
-                    <?php 
+                    <?php
                     if (!empty($about_data['content'])) {
-                        echo $about_data['content']; 
+                        echo $about_data['content'];
                     } else {
                         echo '<p>At <strong>Maruti Agro Industries</strong>, we specialize in processing and exporting premium quality whole spices, dry fruits, and authentic Indian agricultural products globally.</p>';
                     }
                     ?>
                 </div>
-                
+
                 <a href="about.php" class="btn-gold-solid px-4 py-3 text-uppercase fw-bold mt-2 d-inline-block">Discover Our Journey</a>
             </div>
         </div>
@@ -276,43 +276,42 @@ include("includes/header.php");
                 while ($prod = mysqli_fetch_assoc($products_res)):
                     $proImg = !empty($prod['pro_img']) ? 'admin/assets/img/uploads/' . $prod['pro_img'] : 'assets/images/black.png';
                     $productSlug = !empty($prod['slug_url']) ? $prod['slug_url'] : $prod['id'];
-                    
+
                     // Fetch description: short_desc first, fallback to meta_desc, then default text
                     $descText = !empty($prod['short_desc']) ? strip_tags($prod['short_desc']) : strip_tags($prod['meta_desc']);
-                    if(empty(trim($descText))){
-                         $descText = "Premium quality export grade agricultural product sourced directly from the finest farms in India.";
+                    if (empty(trim($descText))) {
+                        $descText = "Premium quality export grade agricultural product sourced directly from the finest farms in India.";
                     }
             ?>
                     <div class="col-lg-3 col-md-6 col-sm-6 reveal-up">
                         <div class="premium-product-card bg-white h-100 d-flex flex-column">
                             <div class="product-badge bg-gold text-dark fw-bold">Premium</div>
-                            
+
                             <a href="product-details.php?slug=<?php echo urlencode($productSlug); ?>" class="product-img-box d-block">
                                 <img src="<?= htmlspecialchars($proImg) ?>" alt="<?= htmlspecialchars($prod['pro_name']) ?>" onerror="this.src='assets/images/black.png'">
                             </a>
-                            
+
                             <div class="product-info p-4 d-flex flex-column flex-grow-1 text-start">
                                 <h4 class="product-title text-dark fw-bold mb-2">
                                     <a href="product-details.php?slug=<?php echo urlencode($productSlug); ?>" class="text-decoration-none text-dark">
                                         <?= htmlspecialchars($prod['pro_name']) ?>
                                     </a>
                                 </h4>
-                                
+
                                 <!-- Exactly 2 lines short description -->
                                 <p class="product-short-desc text-muted mb-4 flex-grow-1">
                                     <?= htmlspecialchars($descText) ?>
                                 </p>
-                                
+
                                 <!-- Modern Button Group (View Details Left | Inquire Now Right) -->
-                                <!-- Modern Button Group (Sleek Design) -->
-<div class="d-flex gap-2 mt-auto w-100">
-    <a href="product-details.php?slug=<?php echo urlencode($productSlug); ?>" class="btn-card-outline flex-fill text-center text-decoration-none">
-        View Details
-    </a>
-    <a href="contact.php?product=<?= urlencode($prod['pro_name']) ?>" class="btn-card-solid flex-fill text-center text-decoration-none">
-        Inquire Now
-    </a>
-</div>
+                                <div class="d-flex gap-2 mt-auto w-100">
+                                    <a href="product-details.php?slug=<?php echo urlencode($productSlug); ?>" class="btn-card-outline flex-fill text-center text-decoration-none">
+                                        View Details
+                                    </a>
+                                    <a href="contact.php?product=<?= urlencode($prod['pro_name']) ?>" class="btn-card-solid flex-fill text-center text-decoration-none">
+                                        Inquire Now
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -323,7 +322,7 @@ include("includes/header.php");
                 <div class="col-12 text-center text-muted">No products found.</div>
             <?php endif; ?>
         </div>
-        
+
         <div class="text-center mt-5 d-block d-md-none">
             <a href="products.php" class="btn-dark-outline text-uppercase">View All Catalog</a>
         </div>
@@ -339,32 +338,32 @@ include("includes/header.php");
                 <h2 class="main-heading text-dark fw-bold mt-2">What Global Partners Say</h2>
             </div>
         </div>
-        
+
         <div class="row g-4 justify-content-center">
-            <?php 
-            if ($test_res && mysqli_num_rows($test_res) > 0): 
-                while($test = mysqli_fetch_assoc($test_res)):
+            <?php
+            if ($test_res && mysqli_num_rows($test_res) > 0):
+                while ($test = mysqli_fetch_assoc($test_res)):
                     $testImg = !empty($test['image']) ? 'admin/uploads/testimonials/' . $test['image'] : 'assets/images/clove.png';
             ?>
-            <div class="col-lg-4 col-md-6 reveal-up">
-                <div class="premium-testimonial-card h-100 bg-light-gray">
-                    <div class="quote-icon text-gold mb-3"><i class="bi bi-quote"></i></div>
-                    <p class="test-msg text-dark fst-italic mb-4">"<?= htmlspecialchars($test['message']) ?>"</p>
-                    <div class="client-info d-flex align-items-center border-top pt-3 border-light">
-                        <div class="client-img rounded-circle overflow-hidden me-3" style="width: 50px; height: 50px; border: 2px solid #D4AF37;">
-                            <img src="<?= htmlspecialchars($testImg) ?>" alt="<?= htmlspecialchars($test['name']) ?>" class="w-100 h-100 object-fit-cover" onerror="this.src='assets/images/section/default-avatar.png'">
-                        </div>
-                        <div>
-                            <h5 class="client-name text-dark fw-bold mb-0" style="font-size: 1rem;"><?= htmlspecialchars($test['name']) ?></h5>
-                            <span class="client-desig text-gold small fw-semibold"><?= htmlspecialchars($test['designation']) ?></span>
+                    <div class="col-lg-4 col-md-6 reveal-up">
+                        <div class="premium-testimonial-card h-100 bg-light-gray">
+                            <div class="quote-icon text-gold mb-3"><i class="bi bi-quote"></i></div>
+                            <p class="test-msg text-dark fst-italic mb-4">"<?= htmlspecialchars($test['message']) ?>"</p>
+                            <div class="client-info d-flex align-items-center border-top pt-3 border-light">
+                                <div class="client-img rounded-circle overflow-hidden me-3" style="width: 50px; height: 50px; border: 2px solid #D4AF37;">
+                                    <img src="<?= htmlspecialchars($testImg) ?>" alt="<?= htmlspecialchars($test['name']) ?>" class="w-100 h-100 object-fit-cover" onerror="this.src='assets/images/section/default-avatar.png'">
+                                </div>
+                                <div>
+                                    <h5 class="client-name text-dark fw-bold mb-0" style="font-size: 1rem;"><?= htmlspecialchars($test['name']) ?></h5>
+                                    <span class="client-desig text-gold small fw-semibold"><?= htmlspecialchars($test['designation']) ?></span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <?php 
+                <?php
                 endwhile;
             else:
-            ?>
+                ?>
                 <div class="col-12 text-center text-muted">Client reviews will be updated shortly.</div>
             <?php endif; ?>
         </div>
@@ -375,37 +374,43 @@ include("includes/header.php");
 <section class="brands-slider-section border-top border-bottom" style="background-color: #fafafa;">
     <div class="container py-5">
         <h5 class="text-center text-uppercase text-muted fw-bold letter-spacing-1 mb-4" style="font-size: 0.9rem;">Organizations & Partners Trusting Us</h5>
-        
+
         <div class="brand-slider-container">
             <div class="brand-slide-track">
-                <?php if(!empty($brands_array)): ?>
-                    <?php 
-                    for($loop = 0; $loop < 2; $loop++):
-                        foreach($brands_array as $brand):
+                <?php if (!empty($brands_array)): ?>
+                    <?php
+                    for ($loop = 0; $loop < 2; $loop++):
+                        foreach ($brands_array as $brand):
                             $brandLogo = !empty($brand['logo_path']) ? $brand['logo_path'] : '';
                     ?>
-                    <div class="brand-slide">
-                        <?php if(!empty($brandLogo)): ?>
-                            <img src="admin/<?= htmlspecialchars($brandLogo) ?>" alt="<?= htmlspecialchars($brand['brand_name']) ?>" title="<?= htmlspecialchars($brand['brand_name']) ?>">
-                        <?php else: ?>
-                            <span class="fw-bold text-dark text-uppercase"><?= htmlspecialchars($brand['brand_name']) ?></span>
-                        <?php endif; ?>
-                    </div>
-                    <?php 
-                        endforeach; 
-                    endfor; 
+                            <div class="brand-slide">
+                                <?php if (!empty($brandLogo)): ?>
+                                    <img src="admin/<?= htmlspecialchars($brandLogo) ?>" alt="<?= htmlspecialchars($brand['brand_name']) ?>" title="<?= htmlspecialchars($brand['brand_name']) ?>">
+                                <?php else: ?>
+                                    <span class="fw-bold text-dark text-uppercase"><?= htmlspecialchars($brand['brand_name']) ?></span>
+                                <?php endif; ?>
+                            </div>
+                    <?php
+                        endforeach;
+                    endfor;
                     ?>
                 <?php else: ?>
-                    <div class="brand-slide"><h4 class="fw-bold text-muted text-uppercase m-0">FSSAI</h4></div>
-                    <div class="brand-slide"><h4 class="fw-bold text-muted text-uppercase m-0">APEDA</h4></div>
-                    <div class="brand-slide"><h4 class="fw-bold text-muted text-uppercase m-0">SPICES BOARD</h4></div>
+                    <div class="brand-slide">
+                        <h4 class="fw-bold text-muted text-uppercase m-0">FSSAI</h4>
+                    </div>
+                    <div class="brand-slide">
+                        <h4 class="fw-bold text-muted text-uppercase m-0">APEDA</h4>
+                    </div>
+                    <div class="brand-slide">
+                        <h4 class="fw-bold text-muted text-uppercase m-0">SPICES BOARD</h4>
+                    </div>
                 <?php endif; ?>
             </div>
         </div>
     </div>
 </section>
 
-<?php include ('includes/inquiry-form.php');?>
+<?php include('includes/inquiry-form.php'); ?>
 
 <!-- Clean Corporate FAQ Section -->
 <section class="section-padding bg-light-green">
@@ -469,7 +474,7 @@ include("includes/header.php");
                             </div>
                         </div>
                     </div>
-                </div> 
+                </div>
             </div>
         </div>
     </div>

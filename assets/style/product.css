@@ -1,0 +1,230 @@
+/* =====================================
+   PRODUCTS PAGE PREMIUM STYLING
+   ===================================== */
+
+/* Sidebar Widgets */
+.sidebar-widget {
+    transition: all 0.3s ease;
+}
+.sidebar-cat-list li {
+    border-bottom: 1px solid #f0f0f0;
+}
+.sidebar-cat-list li:last-child {
+    border-bottom: none;
+}
+.sidebar-cat-list li a {
+    display: block;
+    padding: 12px 0;
+    color: #444;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+.sidebar-cat-list li a:hover {
+    color: #0B4619; /* Brand Green */
+    padding-left: 8px; /* Slight push effect */
+}
+
+/* Search Bar */
+.premium-search-input {
+    border: 1px solid #e0e0e0;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    padding: 12px 15px;
+}
+.premium-search-input:focus {
+    border-color: #D4AF37;
+    box-shadow: none;
+    background-color: #fff;
+}
+.premium-search-btn:focus {
+    outline: none;
+}
+
+.product-desc-3-lines {
+    display: -webkit-box;
+    line-clamp: 3; 
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.5;
+    font-size: 0.85rem;
+    height: 4.5em; 
+}
+
+.comm-icon {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+.bg-light-green { background-color: rgba(11, 70, 25, 0.08) !important; }
+.text-green { color: #0B4619 !important; }
+
+.comm-icon:hover {
+    background-color: #0B4619 !important;
+    color: #fff !important;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 10px rgba(11, 70, 25, 0.2);
+}
+
+/* Premium Pagination */
+.premium-pagination .page-item .page-link {
+    color: #0B4619;
+    border: 1px solid #e0e0e0;
+    margin: 0 4px;
+    border-radius: 4px;
+    font-weight: 600;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+.premium-pagination .page-item.active .page-link {
+    background-color: #0B4619;
+    border-color: #0B4619;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(11, 70, 25, 0.2);
+}
+.premium-pagination .page-item .page-link:hover:not(.active) {
+    background-color: #D4AF37;
+    border-color: #D4AF37;
+    color: #1A1A1A;
+}
+.premium-pagination .page-item.disabled .page-link {
+    background-color: #f8f9fa;
+    color: #adb5bd;
+    border-color: #e9ecef;
+}
+
+/* =====================================
+   MODERN PRODUCT CARD (SLEEK DESIGN)
+   ===================================== */
+.modern-product-card {
+    border: 1px solid #f0f0f0;
+    border-radius: 10px; /* Smooth rounded corners */
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.modern-product-card:hover {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08) !important;
+    transform: translateY(-8px);
+    border-color: #0B4619; /* Deep Green border on hover */
+}
+
+/* Image Wrapper */
+.modern-img-wrapper {
+    overflow: hidden;
+    background-color: #f9f9f9;
+}
+
+.modern-img-wrapper img {
+    transition: transform 0.6s ease;
+}
+
+.modern-product-card:hover .modern-img-wrapper img {
+    transform: scale(1.08); /* Smooth zoom effect */
+}
+
+/* Elegant Floating Badge */
+.modern-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    padding: 6px 14px;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 50px; /* Pill shape */
+    z-index: 2;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* 3-Line Description */
+.modern-desc {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.6;
+    font-size: 0.85rem;
+    height: 4.8em; 
+}
+
+/* Contact Strip Icons */
+.modern-icon-btn {
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.call-btn {
+    background-color: rgba(11, 70, 25, 0.1);
+    color: #0B4619;
+}
+
+.wa-btn {
+    background-color: rgba(37, 211, 102, 0.15);
+    color: #25d366;
+}
+
+.modern-icon-btn:hover {
+    transform: translateY(-2px);
+    color: #fff;
+}
+
+.call-btn:hover { background-color: #0B4619; box-shadow: 0 4px 10px rgba(11, 70, 25, 0.2); }
+.wa-btn:hover { background-color: #25d366; box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3); }
+
+/* Sleek Pill Buttons */
+.btn-modern-outline, .btn-modern-solid {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 10px 15px;
+    border-radius: 50px; /* Fully rounded buttons */
+    transition: all 0.3s ease;
+    height: 40px;
+    line-height: 1.4;
+}
+
+.btn-modern-outline {
+    border: 1px solid #e0e0e0;
+    color: #1A1A1A;
+    background-color: transparent;
+}
+
+.btn-modern-outline:hover {
+    background-color: #1A1A1A;
+    border-color: #1A1A1A;
+    color: #fff !important;
+}
+
+.btn-modern-solid {
+    background-color: #D4AF37;
+    border: 1px solid #D4AF37;
+    color: #1A1A1A !important;
+}
+
+.btn-modern-solid:hover {
+    background-color: #0B4619;
+    border-color: #0B4619;
+    color: #fff !important;
+}

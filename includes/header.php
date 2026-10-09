@@ -76,11 +76,11 @@ if (isset($conn)) {
     
     <link rel="stylesheet" href="assets/style/include.css?v=<?php echo time() ?>">
     <link rel="stylesheet" href="assets/style/style.css?v=<?php echo time() ?>">
-    <!-- <link rel="stylesheet" href="assets/style/about.css?v=<?php echo time() ?>">
-    <link rel="stylesheet" href="assets/style/blog.css?v=<?php echo time() ?>">
+     <link rel="stylesheet" href="assets/style/about.css?v=<?php echo time() ?>">
+     <link rel="stylesheet" href="assets/style/product.css?v=<?php echo time() ?>"> 
+   <!-- <link rel="stylesheet" href="assets/style/blog.css?v=<?php echo time() ?>">
     <link rel="stylesheet" href="assets/style/contact.css?v=<?php echo time() ?>">
-    <link rel="stylesheet" href="assets/style/gallery.css?v=<?php echo time() ?>">
-    <link rel="stylesheet" href="assets/style/product.css?v=<?php echo time() ?>"> -->
+    <link rel="stylesheet" href="assets/style/gallery.css?v=<?php echo time() ?>">-->
     
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-3JGVQX47GN"></script>
     <script>
