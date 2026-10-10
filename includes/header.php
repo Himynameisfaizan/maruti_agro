@@ -78,8 +78,8 @@ if (isset($conn)) {
     <link rel="stylesheet" href="assets/style/style.css?v=<?php echo time() ?>">
      <link rel="stylesheet" href="assets/style/about.css?v=<?php echo time() ?>">
      <link rel="stylesheet" href="assets/style/product.css?v=<?php echo time() ?>"> 
-   <!-- <link rel="stylesheet" href="assets/style/blog.css?v=<?php echo time() ?>">
-    <link rel="stylesheet" href="assets/style/contact.css?v=<?php echo time() ?>">
+    <link rel="stylesheet" href="assets/style/blog.css?v=<?php echo time() ?>">
+    <!-- <link rel="stylesheet" href="assets/style/contact.css?v=<?php echo time() ?>">
     <link rel="stylesheet" href="assets/style/gallery.css?v=<?php echo time() ?>">-->
     
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-3JGVQX47GN"></script>
@@ -187,9 +187,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <?php 
                         if (isset($cats_dropdown_query) && mysqli_num_rows($cats_dropdown_query) > 0) {
                             while($cat = mysqli_fetch_assoc($cats_dropdown_query)) {
-                                $isActiveCat = (isset($_GET['category']) && $_GET['category'] == $cat['slug_url']) ? 'active-dropdown-item' : '';
+                                $isActiveCat = (isset($_GET['slug']) && $_GET['slug'] == $cat['slug_url']) ? 'active-dropdown-item' : '';
                         ?>
-                            <li><a class="dropdown-item <?= $isActiveCat; ?>" href="products.php?category=<?= $cat['slug_url']; ?>"><?= htmlspecialchars($cat['categories']); ?></a></li>
+                            <li><a class="dropdown-item <?= $isActiveCat; ?>" href="category.php?slug=<?= $cat['slug_url']; ?>"><?= htmlspecialchars($cat['categories']); ?></a></li>
                         <?php 
                             }
                         } 
