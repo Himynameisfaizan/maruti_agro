@@ -1,0 +1,71 @@
+/* =====================================
+   CONTACT PAGE PREMIUM STYLING
+   ===================================== */
+
+/* Contact Information Cards */
+.contact-info-card {
+    transition: all 0.4s ease;
+    border-top: 4px solid transparent;
+}
+.contact-info-card.border-top-gold {
+    border-top-color: #D4AF37 !important;
+}
+.contact-info-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.06) !important;
+}
+
+/* Icon Box inside Contact Cards */
+.contact-icon-box {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+.contact-info-card:hover .contact-icon-box {
+    background-color: #0B4619 !important;
+    color: #D4AF37 !important;
+}
+
+/* Text Hover Effect */
+.hover-gold {
+    transition: color 0.3s ease;
+}
+.hover-gold:hover {
+    color: #D4AF37 !important;
+}
+
+/* Dark Theme Form Inputs (Inside Green Box) */
+.premium-dark-input {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(212, 175, 55, 0.4) !important;
+    color: #ffffff !important;
+    padding: 14px 18px;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+.premium-dark-input::placeholder {
+    color: rgba(255, 255, 255, 0.6) !important;
+}
+.premium-dark-input:focus {
+    border-color: #D4AF37 !important;
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.2) !important;
+    outline: none;
+}
+
+/* Map Wrapper */
+.contact-map-wrapper iframe {
+    filter: grayscale(15%) contrast(110%);
+}
+
+/* Responsive Fixes */
+@media (max-width: 991px) {
+    .contact-map-wrapper {
+        min-height: 350px !important;
+    }
+}
