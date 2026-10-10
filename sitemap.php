@@ -2,9 +2,9 @@
 header("Content-Type: application/xml; charset=utf-8");
 include 'config/connect.php';
 
-// config/connect.php se global $site variable utha liya
+// Fallback to Maruti Agro domain if $site variable is not available in config
 global $site;
-$baseUrl = !empty($site) ? $site : "https://royalblue-gazelle-538620.hostingersite.com/";
+$baseUrl = !empty($site) ? $site : "https://cyan-albatross-569635.hostingersite.com/";
 
 echo '<?xml version="1.0" encoding="UTF-8"?>';
 echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
@@ -31,27 +31,26 @@ foreach ($staticPages as $page) {
 }
 
 if (isset($conn)) {
-    // 2. Dynamic Categories
+    // 2. Dynamic Categories (Updated to category.php with slug)
     $catQuery = mysqli_query($conn, "SELECT cate_id, slug_url FROM categories WHERE status = 1");
     if ($catQuery && mysqli_num_rows($catQuery) > 0) {
         while ($row = mysqli_fetch_assoc($catQuery)) {
             $catVal = !empty($row['slug_url']) ? $row['slug_url'] : $row['cate_id'];
             echo '<url>';
-            echo '<loc>' . $baseUrl . 'products.php?category=' . urlencode($catVal) . '</loc>';
+            echo '<loc>' . $baseUrl . 'category.php?slug=' . urlencode($catVal) . '</loc>';
             echo '<changefreq>weekly</changefreq>';
             echo '<priority>0.8</priority>';
             echo '</url>';
         }
     }
 
-    // 3. Dynamic Products
+    // 3. Dynamic Products (Updated to slug parameter)
     $prodQuery = mysqli_query($conn, "SELECT id, slug_url FROM products WHERE status = 1");
     if ($prodQuery && mysqli_num_rows($prodQuery) > 0) {
         while ($row = mysqli_fetch_assoc($prodQuery)) {
             $prodVal = !empty($row['slug_url']) ? $row['slug_url'] : $row['id'];
             echo '<url>';
-            // Note: product details mein humne id ya slug jo update kiya tha uske hisaab se yahan parameter match kar lein
-            echo '<loc>' . $baseUrl . 'product-details.php?id=' . $prodVal . '</loc>';
+            echo '<loc>' . $baseUrl . 'product-details.php?slug=' . urlencode($prodVal) . '</loc>';
             echo '<changefreq>weekly</changefreq>';
             echo '<priority>0.8</priority>';
             echo '</url>';

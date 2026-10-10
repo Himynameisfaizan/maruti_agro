@@ -1,4 +1,4 @@
-# robots.txt for Bhagirath Enterprise
+# robots.txt for Maruti Agro Industries
 
 User-agent: *
 Disallow: /admin/
@@ -10,4 +10,4 @@ Disallow: /inquiry-process.php
 Allow: /
 
 # Sitemap link
-Sitemap: https://royalblue-gazelle-538620.hostingersite.com/sitemap.xml
+Sitemap: https://cyan-albatross-569635.hostingersite.com/sitemap.xml
